@@ -1,6 +1,11 @@
 // accessing vUv varying
 varying vec2 vUv;
 
+// Function for having random values
+float random(vec2 st) {
+    return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
+}
+
 void main()
 {
     // gl_FragColor = vec4(0.5, 0.0, 1.0, 1.0);
@@ -119,10 +124,74 @@ void main()
 
     // ############# Pattern 20 #############
     // ====> Black box inside smaller white box
-    float square1 = step(0.2, max(abs(vUv.x - 0.5) ,abs(vUv.y - 0.5)));
-    float square2 = 1.0 - step(0.25, max(abs(vUv.x - 0.5) ,abs(vUv.y - 0.5)));
+    // float square1 = step(0.2, max(abs(vUv.x - 0.5) ,abs(vUv.y - 0.5)));
+    // float square2 = 1.0 - step(0.25, max(abs(vUv.x - 0.5) ,abs(vUv.y - 0.5)));
 
-    float strength = square1 * square2;
+    // float strength = square1 * square2;
+
+    // ############# Pattern 21 #############
+    // float strength = floor(vUv.x);
+    // float strength = floor(vUv.x * 10.0) + 0.4;
+    // float strength = floor(vUv.x * 10.0) / 10.0;
+
+    // ############# Pattern 22 #############
+    // ====> chess pattern
+    // float strength = floor(vUv.x * 10.0) / 10.0;
+    // strength *= floor(vUv.y * 10.0) / 10.0;
+
+    // ############# Pattern 23 #############
+    // ====> static disturbance pattern
+    // We need a random value for this but there is nothing like random function in GLSL.
+    // We can achieve this by using sin, frac functions, so it generates a value so unpredictable that it looks
+    // like the value is random.
+    // float strength = random(vUv);
+
+    // ############# Pattern 24 #############
+    // ====> Big random color boxes
+    // vec2 gridUv = vec2(
+    //     floor(vUv.x * 10.0) / 10.0,
+    //     floor(vUv.y * 10.0) / 10.0
+    // );
+
+    // float strength = random(gridUv);
+
+    // ############# Pattern 25 #############
+    // ====> Big random color boxes with some offset in y-axis
+    // vec2 gridUv = vec2(
+    //     floor(vUv.x * 10.0) / 10.0,
+    //     floor((vUv.y + vUv.x * 0.5) * 10.0) / 10.0
+    // );
+
+    // float strength = random(gridUv);
+
+    // ############# Pattern 26 #############
+    // ====> gradient starting from corner (0,0)
+    // float strength = length(vUv);
+
+    // ############# Pattern 27 #############
+    // ====> gradient from center in circle shape
+    // float strength = length(vUv - 0.5);
+
+    // float strength = distance(vUv,vec2(0.5, 0.5));
+    // float strength = distance(vUv,vec2(0.3, 0.5));
+
+    // ############# Pattern 28 #############
+    // ====> brighter gradient from center in circle shape
+    // float strength = 1.0 - distance(vUv,vec2(0.5, 0.5));
+
+    // ############# Pattern 29 #############
+    // ====> brighter gradient from center in circle shape in dark plane
+    // ##### Point light effect ######
+    // float strength = 0.015/distance(vUv,vec2(0.5, 0.5));
+
+    // ############# Pattern 30 #############
+    // ====> brighter gradient from center in circle shape in dark plane (streched light)
+    // ##### streched light effect ######
+    vec2 lightUv = vec2(
+        vUv.x * 0.1 + 0.45,
+        vUv.y * 0.5 + 0.25
+    );
+    float strength = 0.015/distance(lightUv,vec2(0.5, 0.5));
 
     gl_FragColor = vec4(vec3(strength), 1.0);
 
