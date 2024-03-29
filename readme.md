@@ -20,3 +20,8 @@
       gl_FragColor = vec4(0.5, 0.5, 0.5, 1.0); // For gray scale all rgb values must be same
 
       gl_FragColor = vec4(vUv.x, vUv.x, vUv.x, 1.0); // For Black and white Gradient Color
+
+5. Define :
+   define is used for the variables whose value is not going to change. It is cheaper than variables.
+
+   #define PI 3.1415926535897932384
