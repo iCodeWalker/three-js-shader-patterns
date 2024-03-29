@@ -224,7 +224,7 @@ void main()
 
     // float strength = lightX * lightY;
 
-    // ############# Pattern 31 #############
+    // ############# Pattern 32 #############
     // ====> star pattern (rotated)
     // Here we need to rotate the uv coordinates. Rotating uv coordinates is not easy and we need a function to do it.
 
@@ -233,26 +233,102 @@ void main()
     // float pi = 3.14159265359;
     // vec2 rotatedUv = rotate(vUv, pi, vec2(0.5,0.5));
     // vec2 rotatedUv = rotate(vUv, pi * 0.25, vec2(0.5));
-    
-    vec2 rotatedUv = rotate(vUv, PI * 0.25, vec2(0.5));
+
+    // vec2 rotatedUv = rotate(vUv, PI * 0.25, vec2(0.5));
 
 
-    // For X-axis
-    vec2 lightUvX = vec2(
-        rotatedUv.x * 0.1 + 0.45,
-        rotatedUv.y * 0.5 + 0.25
-    );
-    float lightX =  0.015/distance(lightUvX,vec2(0.5, 0.5));
+    // // For X-axis
+    // vec2 lightUvX = vec2(
+    //     rotatedUv.x * 0.1 + 0.45,
+    //     rotatedUv.y * 0.5 + 0.25
+    // );
+    // float lightX =  0.015/distance(lightUvX,vec2(0.5, 0.5));
 
-    // For Y-axis
-    vec2 lightUvY = vec2(
-        rotatedUv.y * 0.1 + 0.45,
-        rotatedUv.x * 0.5 + 0.25
-    );
-    float lightY =  0.015/distance(lightUvY,vec2(0.5, 0.5));
+    // // For Y-axis
+    // vec2 lightUvY = vec2(
+    //     rotatedUv.y * 0.1 + 0.45,
+    //     rotatedUv.x * 0.5 + 0.25
+    // );
+    // float lightY =  0.015/distance(lightUvY,vec2(0.5, 0.5));
 
-    float strength = lightX * lightY;
+    // float strength = lightX * lightY;
 
+    // ############# Pattern 33 #############
+    // ====> Circles 
+    // with gradient in the circle at center
+    // float strength = distance(vUv, vec2(0.5));
+
+    // with black circle at the center
+    // float strength = step(0.25, distance(vUv, vec2(0.5)));
+
+    // ############# Pattern 34 #############
+    // ring gradient at center
+    // float strength = abs(distance(vUv, vec2(0.5)) - 0.25);
+
+    // ############# Pattern 35 #############
+    // ====> ring at center
+    // float strength = step(0.01, abs(distance(vUv, vec2(0.5)) - 0.25));
+
+    // ############# Pattern 36 #############
+    // ====> ring at center (contrast color)
+    // float strength = 1.0 - step(0.01, abs(distance(vUv, vec2(0.5)) - 0.25));
+
+    // ############# Pattern 37 #############
+    // ====> ameoba type pattern
+    // vec2 wavedUv = vec2(
+    //     vUv.x,
+    //     vUv.y + sin(vUv.x * 30.0) * 0.1
+    // );
+
+    // float strength = 1.0 - step(0.01, abs(distance(wavedUv, vec2(0.5)) - 0.25));
+
+    // ############# Pattern 38 #############
+    // ====> more random pattern
+    // vec2 wavedUv = vec2(
+    //     vUv.x + sin(vUv.y * 30.0) * 0.1,
+    //     vUv.y + sin(vUv.x * 30.0) * 0.1
+    // );
+
+    // float strength = 1.0 - step(0.01, abs(distance(wavedUv, vec2(0.5)) - 0.25));
+
+    // ############# Pattern 39 #############
+    // vec2 wavedUv = vec2(
+    //     vUv.x + sin(vUv.y * 100.0) * 0.1,
+    //     vUv.y + sin(vUv.x * 100.0) * 0.1
+    // );
+
+    // float strength = 1.0 - step(0.01, abs(distance(wavedUv, vec2(0.5)) - 0.25));
+
+    // ############# Pattern 40 #############
+    // =======> Angles
+    // float angle = atan(vUv.x, vUv.y);
+    // float strength = angle;
+
+    // ############# Pattern 41 #############
+    // =======> Angles
+    // float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
+    // float strength = angle;
+
+    // ############# Pattern 42 #############
+    // =======> Angles
+    // float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
+    // angle /= PI * 2.0;
+    // angle += 0.5;
+    // float strength = angle ;
+
+    // ############# Pattern 43 #############
+    // float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
+    // angle /= PI * 2.0;
+    // angle += 0.5;
+    // angle *= 20.0;
+    // angle = mod(angle, 1.0);
+    // float strength = angle ;
+
+    // ############# Pattern 44 #############
+    float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
+    angle /= PI * 2.0;
+    angle += 0.5;
+    float strength = sin(angle * 200.0) ;
 
     gl_FragColor = vec4(vec3(strength), 1.0);
 
