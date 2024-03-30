@@ -31,3 +31,10 @@
    but it can also be used to animate the grass or snow moving in the wind.
 
    link : https://gist.github.com/patriciogonzalezvivo/670c22f3966e662d2f83
+
+7. Mix Colors :
+
+   We are going to use mix(...) function
+   First argument that can be a float,a vec2, a vec3, or a vec4.
+   second argument, which should be of same type.
+   A float that will decide to take more of the first input or more of the second one.
