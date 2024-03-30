@@ -25,3 +25,9 @@
    define is used for the variables whose value is not going to change. It is cheaper than variables.
 
    #define PI 3.1415926535897932384
+
+6. Perlin noise :
+   Perlin noise is used to recreate natural shapes like clouds, smoke, water, fire, terrain elevation.
+   but it can also be used to animate the grass or snow moving in the wind.
+
+   link : https://gist.github.com/patriciogonzalezvivo/670c22f3966e662d2f83
