@@ -404,12 +404,13 @@ void main()
 
     // ############# Pattern (Color Version) #############
 
+    // Color mix version
+    float strength = step(0.9, sin(cnoise(vUv * 10.0) * 20.0));
+
     // Some times the strength in higher than 1.0 and the output gets extrapolated.
     // Due to this we gets strange color output.
     // To fix this we have to clamp the strength
     strength = clamp(strength, 0.0, 1.0);
-    // Color mix version
-    float strength = step(0.9, sin(cnoise(vUv * 10.0) * 20.0));
 
     vec3 blackColor = vec3(0.0);
     vec3 uvColor = vec3(vUv, 1.0);
